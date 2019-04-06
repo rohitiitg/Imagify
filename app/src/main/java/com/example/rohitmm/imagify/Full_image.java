@@ -21,7 +21,7 @@ public class Full_image extends AppCompatActivity {
     public byte[] imageInByte;
     public byte[] test_imageinBytes;
     static int position;
-
+    String encrypted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,10 @@ public class Full_image extends AppCompatActivity {
 
         String str = new String();
         str = Base64.encodeToString(imageInByte,Base64.DEFAULT);
-        
 
-        test_imageinBytes = (Base64.decode(str,Base64.DEFAULT));
+        encrypted = AES.encrypt(str,"We can put any string here as the secret key");
+
+        //test_imageinBytes = (Base64.decode(str,Base64.DEFAULT));
 
 
         upload = (Button) findViewById(R.id.upload_button);
@@ -69,7 +70,7 @@ public class Full_image extends AppCompatActivity {
 
     public void Add_image() {
 
-        boolean isInserted = MainActivity.imagifyDb.insert_image(position,editText.toString(),test_imageinBytes);
+        boolean isInserted = MainActivity.imagifyDb.insert_image(position,editText.toString(),encrypted);
 
         if (isInserted == true)
             Toast.makeText(Full_image.this, "image Uploaded", Toast.LENGTH_LONG).show();

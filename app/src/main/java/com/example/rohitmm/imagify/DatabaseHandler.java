@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.widget.Toast;
 
 
@@ -31,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_db = ("create table " + TABLE_NAME + " ( ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT ,IMAGE BLOB )");
+        String create_db = ("create table " + TABLE_NAME + " ( ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT ,IMAGE TEXT )");
         db.execSQL(create_db);
     }
 
@@ -41,7 +42,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insert_image(int id,String name, byte[] image) {
+    public boolean insert_image(int id,String name, String image) {
         SQLiteDatabase db = this.getWritableDatabase();
 //        db.beginTransaction();
 //        try {
@@ -80,7 +81,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                  while (cursor.getPosition()<cursor.getCount()) {
                      //cursor.moveToPrevious();
                     Bitmap bitmap = null;
-                    byte[] blob = cursor.getBlob(cursor.getColumnIndex("IMAGE"));
+                    String encrypted = cursor.getString(cursor.getColumnIndex("IMAGE"));
+                    String decrypted = AES.decrypt(encrypted,"We can put any string here as the secret key");
+                    byte[] blob = Base64.decode(decrypted,Base64.DEFAULT);
                     bitmap = BitmapFactory.decodeByteArray(blob, 0, blob.length);
                     all_images.add(bitmap);
                     cursor.moveToNext();
