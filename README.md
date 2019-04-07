@@ -6,11 +6,11 @@ Following processes take place when image is uploaded
 
 1. compress to byte stream.
 
-2 encode into a string.
+ 2 encode into a string.
 
-3 encrypt using AES algorithm.
+ 3 encrypt using AES algorithm.
 
-4 store to server as a string.
+ 4 store to server as a string.
 
 Reverse processes takes place when image is retrieved from the server.
 
