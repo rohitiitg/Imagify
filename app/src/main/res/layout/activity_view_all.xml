@@ -29,7 +29,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:text="       Click on Images to delete them" />
+            android:text="       Click long on Images to delete them" />
 
         <Button
             android:id="@+id/home"
@@ -42,9 +42,9 @@
         <GridView
             android:id="@+id/gridView"
             android:layout_width="match_parent"
-            android:layout_height="385dp"
+            android:layout_height="400dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="41dp"
             android:columnWidth="100dp"
             android:horizontalSpacing="5dp"
             android:numColumns="auto_fit"

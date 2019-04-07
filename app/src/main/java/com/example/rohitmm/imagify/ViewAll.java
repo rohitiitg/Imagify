@@ -28,8 +28,6 @@ public class ViewAll extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all);
         gridView = (GridView) findViewById(R.id.gridView);
@@ -38,17 +36,14 @@ public class ViewAll extends AppCompatActivity {
 
         Bitmap[] all_images = MainActivity.imagifyDb.get_images().toArray(new Bitmap[0]);
 
-        final Integer[]  Ids =  MainActivity.imagifyDb.getId().toArray(new Integer[0]);
+        final Integer[] Ids = MainActivity.imagifyDb.getId().toArray(new Integer[0]);
 
 
-
-
-
-        home = (Button)findViewById(R.id.home);
+        home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                 startActivity(intent);
 
@@ -58,18 +53,29 @@ public class ViewAll extends AppCompatActivity {
 
         gridView.setAdapter(new Image_Adapter(this, all_images));
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//        });
+
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
-                MainActivity.imagifyDb.deleteImg(Ids[position]);
+               Integer is_deleted =  MainActivity.imagifyDb.deleteImg(Ids[position]);
 
                 startActivity(getIntent());
+                if (is_deleted!=0){
+                    Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
+                    startActivity(getIntent());
+                    return true;
+                }
+                else
+                return false;
             }
         });
-
-
-
 
 
     }
