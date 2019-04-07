@@ -17,9 +17,8 @@ import java.io.ByteArrayOutputStream;
 
 public class Full_image extends AppCompatActivity {
     Button upload;
-    EditText editText,editNumber;
+    EditText editText;
     public byte[] imageInByte;
-    public byte[] test_imageinBytes;
     static int position;
     String encrypted;
 
@@ -41,23 +40,17 @@ public class Full_image extends AppCompatActivity {
         new_bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         imageInByte = stream.toByteArray();
 
-//        String byte_to_string = imageInByte.toString();
-//        String encrypted_String = AES.encrypt(byte_to_string , "test_secret_key");
-//        String decrypted_String = AES.decrypt(encrypted_String , "test_secret_key");
-//        test_imageinBytes = decrypted_String.getBytes();
+
 
         String str = new String();
         str = Base64.encodeToString(imageInByte,Base64.DEFAULT);
 
         encrypted = AES.encrypt(str,"We can put any string here as the secret key");
 
-        //test_imageinBytes = (Base64.decode(str,Base64.DEFAULT));
-
-
         upload = (Button) findViewById(R.id.upload_button);
 
         editText = (EditText)findViewById(R.id.edit_text);
-        //editNumber = (EditText)findViewById(R.id.edit_number);
+
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +63,12 @@ public class Full_image extends AppCompatActivity {
 
     public void Add_image() {
 
-        boolean isInserted = MainActivity.imagifyDb.insert_image(position,editText.toString(),encrypted);
+        boolean isInserted = MainActivity.imagifyDb.insert_image(editText.toString(),encrypted);
 
         if (isInserted == true)
-            Toast.makeText(Full_image.this, "image Uploaded", Toast.LENGTH_LONG).show();
+            Toast.makeText(Full_image.this, "image Uploaded", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(Full_image.this, "image Already Uploaded", Toast.LENGTH_LONG).show();
+            Toast.makeText(Full_image.this, "image Already Uploaded", Toast.LENGTH_SHORT).show();
     }
 }
 

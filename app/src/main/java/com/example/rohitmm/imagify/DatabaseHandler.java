@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Pair;
 import android.widget.Toast;
 
 
@@ -42,29 +43,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insert_image(int id,String name, String image) {
+    public boolean insert_image(String name, String image) {
         SQLiteDatabase db = this.getWritableDatabase();
-//        db.beginTransaction();
-//        try {
+        db.beginTransaction();
+       try {
             ContentValues Values = new ContentValues();
-            Values.put(COL_1,+id);
+           // Values.put(COL_1,+id);
             Values.put(COL_2,name);
             Values.put(COL_3,image);
             long result = db.insert(TABLE_NAME, null, Values);
 
-//            db.setTransactionSuccessful();
+           db.setTransactionSuccessful();
 
             if (result == -1)
                 return false;
             else
                 return true;
-//        } catch (SQLiteException e) {
-//            e.printStackTrace();
-//            return false;
-//        } finally {
-//            db.endTransaction();
-//            db.close();
-//        }
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
 
 
     }
@@ -73,15 +74,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Bitmap> get_images() {
         ArrayList<Bitmap> all_images = new ArrayList<Bitmap>();
         SQLiteDatabase db = this.getReadableDatabase();
-        //db.beginTransaction();
-        //try {
+        db.beginTransaction();
+        try {
             Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
             if (cursor.getCount() >0) {
                 cursor.moveToFirst();
                  while (cursor.getPosition()<cursor.getCount()) {
-                     //cursor.moveToPrevious();
+
                     Bitmap bitmap = null;
                     String encrypted = cursor.getString(cursor.getColumnIndex("IMAGE"));
+
                     String decrypted = AES.decrypt(encrypted,"We can put any string here as the secret key");
                     byte[] blob = Base64.decode(decrypted,Base64.DEFAULT);
                     bitmap = BitmapFactory.decodeByteArray(blob, 0, blob.length);
@@ -89,19 +91,42 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.moveToNext();
                 }
             }
-          //  db.setTransactionSuccessful();
-        //}
-//        catch (SQLiteException e){
-//            e.printStackTrace();
-//        }
-//        finally {
-//            db.endTransaction();
-//            db.close();
-//        }
-
+            db.setTransactionSuccessful();
+        }
+        catch (SQLiteException e){
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
+            db.close();
+        }
 
         return all_images;
     }
+        public ArrayList<Integer> getId(){
+        ArrayList<Integer> Ids = new ArrayList<Integer>();
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+            if (cursor.getCount() >0) {
+                cursor.moveToFirst();
+                while (cursor.getPosition()<cursor.getCount()) {
+
+                    Integer Id = cursor.getInt(cursor.getColumnIndex("ID"));
+                    Ids.add(Id);
+                    cursor.moveToNext();
+                }
+            }
+
+            return Ids;
+
+        }
+
+    public Integer deleteImg (long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "ID = " +id,null);
+    }
+
 
 
 

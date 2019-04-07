@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ViewAll">
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,27 +15,42 @@
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
         android:paddingTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context=".ViewAll">
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:scaleType="centerInside" />
 
         <GridView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/gridView"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="393dp"
             android:columnWidth="100dp"
             android:horizontalSpacing="5dp"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="5dp"/>
+            android:verticalSpacing="5dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="283dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:text="       Click on Images to delete them" />
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="56dp"
+            android:layout_marginStart="129dp"
+            android:text="Home" />
+
 
     </RelativeLayout>
 
