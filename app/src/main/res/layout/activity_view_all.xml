@@ -22,23 +22,13 @@
         tools:context=".ViewAll">
 
 
-        <GridView
-            android:id="@+id/gridView"
-            android:layout_width="match_parent"
-            android:layout_height="393dp"
-            android:columnWidth="100dp"
-            android:horizontalSpacing="5dp"
-            android:numColumns="auto_fit"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="5dp" />
-
         <TextView
             android:id="@+id/textView2"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="15dp"
             android:text="       Click on Images to delete them" />
 
         <Button
@@ -46,10 +36,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="56dp"
-            android:layout_marginStart="129dp"
+            android:layout_centerHorizontal="true"
             android:text="Home" />
+
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="match_parent"
+            android:layout_height="385dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="51dp"
+            android:columnWidth="100dp"
+            android:horizontalSpacing="5dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dp" />
 
 
     </RelativeLayout>

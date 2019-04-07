@@ -56,6 +56,9 @@ public class Full_image extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Add_image();
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+
+                startActivity(intent);
             }
         });
     }
