@@ -34,24 +34,25 @@ public class ViewAll extends AppCompatActivity {
 
         //gridView.setColumnWidth( width );
 
-        Bitmap[] all_images = MainActivity.imagifyDb.get_images().toArray(new Bitmap[0]);
+        Bitmap[] all_images = MainActivity.imagifyDb.get_images().toArray(new Bitmap[0]); // getting the images in bitmaps  from the get image function .
 
-        final Integer[] Ids = MainActivity.imagifyDb.getId().toArray(new Integer[0]);
+        final Integer[] Ids = MainActivity.imagifyDb.getId().toArray(new Integer[0]);    // getting the ids of the images from the database.
 
 
         home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);       // start the main activity when clicked on home button.
 
                 startActivity(intent);
+                finish();
 
             }
         });
 
 
-        gridView.setAdapter(new Image_Adapter(this, all_images));
+        gridView.setAdapter(new Image_Adapter(this, all_images));  // set the adapter with bitmaps to display in grid view.
 
 //        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -63,13 +64,14 @@ public class ViewAll extends AppCompatActivity {
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
-               Integer is_deleted =  MainActivity.imagifyDb.deleteImg(Ids[position]);
+
+               Integer is_deleted =  MainActivity.imagifyDb.deleteImg(Ids[position]);  // delete the image when long pressed on it.
 
                 startActivity(getIntent());
                 if (is_deleted!=0){
-                    Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();  // display the corresponding message.
                     startActivity(getIntent());
+                    finish();
                     return true;
                 }
                 else
@@ -80,23 +82,8 @@ public class ViewAll extends AppCompatActivity {
 
     }
 
-    public int measureCellWidth(Context context, View cell )
-    {
 
-        // We need a fake parent
-        FrameLayout buffer = new FrameLayout( context );
-        android.widget.AbsListView.LayoutParams layoutParams = new  android.widget.AbsListView.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        buffer.addView( cell, layoutParams);
 
-        cell.forceLayout();
-        cell.measure(1000, 1000);
-
-        int width = cell.getMeasuredWidth();
-
-        buffer.removeAllViews();
-
-        return width;
-    }
 
 
     }

@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-public class Image_Adapter extends BaseAdapter {
+public class Image_Adapter extends BaseAdapter {                // creation of image adapter class.
     private Context context;
     public Bitmap[] bitmap_images;
 
@@ -35,7 +35,7 @@ public class Image_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView = new ImageView(context);
+        ImageView imageView = new ImageView(context);                               // display the images in grid view when adapter is set.
         imageView.setImageBitmap(bitmap_images[position]);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imageView.setLayoutParams(new GridView.LayoutParams(240,240));

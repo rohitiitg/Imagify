@@ -33,7 +33,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_db = ("create table " + TABLE_NAME + " ( ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT ,IMAGE TEXT )");
+        String create_db = ("create table " + TABLE_NAME + " ( ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT ,IMAGE TEXT )");  //creating database with ID as primary key and name & image(encrypted string) as contents.
         db.execSQL(create_db);
     }
 
@@ -43,7 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insert_image(String name, String image) {
+    public boolean insert_image(String name, String image) {        // insert image function which inserts the image(encrypted string) in the database along with name.
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
        try {
@@ -71,7 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Bitmap> get_images() {
+    public ArrayList<Bitmap> get_images() {                                     // get image function which returns array list of bitmaps when called
         ArrayList<Bitmap> all_images = new ArrayList<Bitmap>();
         SQLiteDatabase db = this.getReadableDatabase();
         db.beginTransaction();
@@ -82,12 +82,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                  while (cursor.getPosition()<cursor.getCount()) {
 
                     Bitmap bitmap = null;
-                    String encrypted = cursor.getString(cursor.getColumnIndex("IMAGE"));
+                    String encrypted = cursor.getString(cursor.getColumnIndex("IMAGE"));  // encrypted string is retrieved here.
 
-                    String decrypted = AES.decrypt(encrypted,"We can put any string here as the secret key");
-                    byte[] blob = Base64.decode(decrypted,Base64.DEFAULT);
-                    bitmap = BitmapFactory.decodeByteArray(blob, 0, blob.length);
-                    all_images.add(bitmap);
+                    String decrypted = AES.decrypt(encrypted,"We can put any string here as the secret key");  // image string is decrypted using the same key.
+                    byte[] blob = Base64.decode(decrypted,Base64.DEFAULT);                                      // string is decoded to byte array.
+                    bitmap = BitmapFactory.decodeByteArray(blob, 0, blob.length);           // byte converted to bitmaps.
+                    all_images.add(bitmap);                                                      // bitmap added to array of bitmaps.
                     cursor.moveToNext();
                 }
             }
@@ -103,7 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return all_images;
     }
-        public ArrayList<Integer> getId(){
+        public ArrayList<Integer> getId(){                          // this function returns the array of ids when called.
         ArrayList<Integer> Ids = new ArrayList<Integer>();
 
             SQLiteDatabase db = this.getReadableDatabase();
@@ -112,8 +112,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.moveToFirst();
                 while (cursor.getPosition()<cursor.getCount()) {
 
-                    Integer Id = cursor.getInt(cursor.getColumnIndex("ID"));
-                    Ids.add(Id);
+                    Integer Id = cursor.getInt(cursor.getColumnIndex("ID"));    // getting the id from the cursor.
+                    Ids.add(Id);                                                            // adding to array of ids.
                     cursor.moveToNext();
                 }
             }
@@ -122,7 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         }
 
-    public Integer deleteImg (long id) {
+    public Integer deleteImg (long id) {                                    // this function deletes image when called.
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID = " +id,null);
     }
