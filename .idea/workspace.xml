@@ -9,19 +9,10 @@
     <list default="true" id="75ccc3d1-013e-49c0-9f7b-952ecea3126e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/DatabaseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/DatabaseHandler.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/Full_image.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/Full_image.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/Image_Adapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/Image_Adapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/ViewAll.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/rohitmm/imagify/ViewAll.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
